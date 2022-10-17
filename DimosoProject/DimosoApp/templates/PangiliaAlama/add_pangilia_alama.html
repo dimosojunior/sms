@@ -1,0 +1,181 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Add Alama{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          ::placeholder{
+            color: blue;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+
+
+
+                  </style>
+
+      </head>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+
+  <div class="row">
+
+  <div class="col-md-7">
+  <h2 style="font-size: 18px;color: black;"></h2> <a href="{% url 'alama' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">See All</a>
+  </div>
+</div>
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+  <form method="POST" action="" enctype="multipart/form-data">
+    <center> <h1 style="font-size: 18px;color: black;">ADD ALAMA</h1></center>
+
+          {% csrf_token %}
+
+
+<div class="row">
+
+  <div class="col-md-3">
+   <label>A Start</label>:<br>
+   {{form.A_start}}<br>
+
+   <label>B Start</label>:<br>
+   {{form.B_start}}<br>
+
+   <label>E Start</label>:<br>
+   {{form.E_start}}<br>
+</div>
+
+
+<div class="col-md-3">
+ <label>A End</label>:<br>
+ {{form.A_end}}<br>
+
+ <label>B End</label>:<br>
+ {{form.B_end}}<br>
+
+ <label>E End</label>:<br>
+   {{form.E_end}}<br>
+  </div>
+
+
+<div class="col-md-3">
+ <label>C Start</label>:<br>
+ {{form.C_start}}<br>
+
+ <label>D Start</label>:<br>
+ {{form.D_start}}<br>
+
+ <label>F Start</label>:<br>
+   {{form.F_start}}<br>
+  </div>
+
+  <div class="col-md-3">
+ <label>C End</label>:<br>
+ {{form.C_end}}<br>
+
+
+ <label>D End</label>:<br>
+ {{form.D_end}}<br>
+
+
+ <label>F End</label>:<br>
+   {{form.F_end}}<br>
+  </div>
+
+
+
+
+
+
+
+
+  </div>    <!--mwisho wa row--->
+
+  <center>
+
+   <button type="submit" style="background-color:blue;border-radius: 10px;padding: 10px;color: white;margin-top: 1cm;
+border: 0px; ">Add Alama </button>
+
+</center>
+
+</form>
+
+
+       
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

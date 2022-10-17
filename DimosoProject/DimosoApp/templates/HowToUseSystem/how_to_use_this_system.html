@@ -1,0 +1,150 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}All Students{% endblock %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title></title>
+
+
+  <style type="text/css">
+    .card{
+      width: 100%;
+      transition-property: all;
+      transition-duration: 1s;
+      transition-delay: .5s;
+      transition-timing-function: ease-in;
+    }
+    .card:hover{
+      width: 95%;
+      margin-left: 25px;
+
+    }
+
+    form input{
+      width: 90%;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid blue;
+      color: black;
+    }
+    form input[type="submit"]{
+      width: 10%;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid blue;
+      margin-top: 20px;
+      background-color: blue;
+      color: white;
+    }
+    h2{
+      font-size: 18px;
+      color: red;
+      font-weight: bold;
+      font-family: sans-serif;
+
+    }
+    h1{
+      font-size: 18px;
+      color: black;
+      font-weight: bold;
+      font-family: sans-serif;
+
+    }
+    
+  </style>
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 5px;margin-bottom: 2cm;">
+
+
+
+
+  
+<center><h1>HOW TO USE THIS SYSTEM</h1></center>
+
+
+
+
+
+
+
+
+<!---mwanzo wa card--->
+<div class="card text-left" style="border: 2px solid black;border-radius: 15px;">
+  <div class="card-header" style="background-color: rgb(5,5,49);color: white;padding: 10px;font-size: 20px;border-radius: 10px;">
+    
+  </div>
+  <div class="card-body">
+
+ <img src="{% static 'DimosoApp/assets/img/bg.png' %}"  class="rounded-circle" style="width: 100%;height: 12cm;">
+
+  
+  
+
+<center><h1>FUATA HATUA ZIFUATAZO</h1></center>
+
+       <p class="card-text" style="margin-top: 1cm;font-size: 18px;color: black;font-family: sans-serif;">
+        
+
+1. Anza kwa kuingiza majina ya wanafunzi wote pamoja na Emails na namba za simu za wazazi wao kama utahitaji kutuma sms au email. 
+ <a href="{% url 'all_students' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 2. Kisha mwalimu wa somo anapaswa kusajili wanafunzi wanaosoma hilo somo pamoja na kuweka marks za wanafunzi wanapofanya mtihani wa hilo somo husika. <a href="{% url 'subjects' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 3. Mwalimu anayehusika anapaswa kuingiza matokeo ya jumla kwa kila mwanafunzi au  mwalimu wa kila somo anaweza kuingiza marks za jumla za kila mwanafunzi kutokana na somo analolifundisha. <a href="{% url 'students_general_results' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 4. Print matokeo ya jumla. <a href="{% url 'students_general_results' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 5. Jaza ripoti ya kila mwanafunzi. <a href="{% url 'all_individual_results' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 6. Print ripoti ya kila mwanafunzi. <a href="{% url 'all_individual_results' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+ 7. Ingiza taarifa muhimu kwa kila mwanafunzi. <a href="{% url 'important_informations' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+
+ 8. Tuma matokeo ya kila mwanafunzi wa mzazi au mlezi wa mwanafunzi kwa  njia ya email au kwa njia ya normal text. <a href="{% url 'all_sms_email_sent_students' %}" class="btn btn-danger" style="margin-right: 10px; margin-bottom: 10px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;">View</a><br>
+
+
+
+
+
+       </p>
+    
+
+      
+
+    
+
+  </div>
+  
+</div>
+
+
+<!---mwisho wa card---->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

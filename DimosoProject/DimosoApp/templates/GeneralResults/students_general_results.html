@@ -1,0 +1,826 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Physics Student Marks{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          h1{
+            font-size: 20px;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+
+          ::placeholder{
+            color: blue;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .check{
+            background-color: rgb(5,5,49);
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+          }
+          #checki{
+            width: 20%;
+            background-color: red;
+            color: red;
+            height: 50px;
+
+          }
+
+
+
+
+                  </style>
+
+      </head>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 4cm;">
+
+<div class="row">
+
+  <div class="col-md-7">
+    {% if user.role == 'MULTI TEACHER' %}
+
+  <h2 style="font-size: 18px;color: black;">Click here to add student results for the first time, if he or she is not in the list</h2> <a href="{% url 'add_general_results' %}" class="btn btn-danger" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;color: white;">Add Here</a>
+  {% endif %}
+
+  <a href="{% url 'print_students_general_results' %}" class="btn btn-primary" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;color: white;">Print Results</a>
+  </div>
+
+  <div class="col-md-5 check" >
+
+
+
+    <form method="POST" action="" style="color: white;">
+  {% csrf_token %}
+
+  <div class="row">
+
+  <div class="col-md-10">
+  <h2 style="font-size: 18px;color: white;">Put a tick to save this page</h2>
+  {{form.export_to_CSV}}</div>
+  <div class="col-md-2">
+ <button type="submit" class="btn-danger" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;margin-top: 1cm;">
+     Save
+  </button></div></div>
+  
+</form>
+
+
+  </div>
+
+</div><!--mwisho wa row --->
+
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+
+
+
+<div class="row" style="margin-left: 20px;margin-top: 30px;">
+{% if results %}
+
+  <form method="get" action="{% url 'search_general_results' %}">
+    {% csrf_token %}
+
+    
+    <input type="text" name="search" id="search" placeholder="Enter Student Last Name" required><br>
+
+    <input type="submit" class="btn-primary" value="Search Student" name="" style="width: 30%;">
+    
+  </form>
+  
+
+</div>
+
+
+
+
+
+
+
+
+
+<center><h1>GENERAL STUDENTS RESULTS</h1></center>
+
+  <div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">NO</th>
+    <th colspan="1">Name</th>
+    <th colspan="1">Gender</th>
+    <th colspan="1">Physics</th>
+    <th colspan="1">Chemistry</th>
+    <th colspan="1">Biology</th>
+    <th colspan="1">English</th>
+    <th colspan="1">Mathematics</th>
+    <th colspan="1">Geography</th>
+    <th colspan="1">History</th>
+    <th colspan="1">Civics</th>
+    <th colspan="1">Kiswahili</th>
+    <th colspan="1">Total</th>
+    <th colspan="1">Average</th>
+    <th colspan="1">Point</th>
+    <th colspan="1">Grade</th>
+    <th colspan="1">Action</th>
+  </tr>
+
+
+
+
+  </thead>
+
+{% for x in results %}
+
+
+  <tbody>
+
+        
+    <tr>
+
+      <td>{{forloop.counter}}</td>
+       <td>{{x.students.first_name}} {{x.students.middle_name}} {{x.students.last_name}}</td>
+
+      <td>{{x.students.gender}}</td>
+      <td>{{x.physics}}</td>
+      <td>{{x.chemistry}}</td>
+      <td>{{x.biology}}</td>
+      <td>{{x.english}}</td>
+      <td>{{x.mathematics}}</td>
+      <td>{{x.geography}}</td>
+      <td>{{x.history}}</td>
+      <td>{{x.civics}}</td>
+      <td>{{x.kiswahili}}</td>
+      <td>{{x.student_total}}</td>
+      <td>{{x.student_average}}</td>
+      <td>{{x.student_point}}</td>
+      <td>{{x.student_grade}}</td>
+
+       
+<td>
+  
+{% if user.role == 'MULTI TEACHER' %}
+
+             <a href="{% url 'update_general_results' x.id %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 3px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Update</a>
+
+             <a href="{% url 'delete_general_results' x.id %}" class="btn btn-danger" style="margin-bottom: 5px;font-size: 18px;padding: 3px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Delete</a>
+             {% else %}
+              <a href="" class="btn btn-danger" style="margin-bottom: 5px;font-size: 18px;padding: 3px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Not Allowed</a>
+
+            {% endif %}
+
+         </td>
+
+      
+
+
+
+        
+
+      
+    </tr>
+
+      </tbody>
+
+
+
+
+
+
+
+
+      {% endfor %}
+
+{% else %}
+<h1>NO Any Results Added</h1>
+
+{% endif %}
+
+  
+
+
+
+
+</table>
+    
+</div>
+    
+
+
+<!---mwisho wa table ya kwanza ya general results---->
+
+
+
+
+
+<!---ROW YA KUDISPLAY TOTAL NA AVERAGE KWA KILA SOMO--->
+<div class="row" style="margin-top: 1cm;"><!--mwanzo wa row--->
+
+
+  <div class="col-md-12" style="margin-bottom: 1cm;"><!--mwanzo wa column--->
+    <center><h1>RESULTS SUMMARY</h1></center>
+
+
+
+
+<div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">Physics Total Marks</th>
+    <td>{{physics_sum.sum}}</td>
+
+      <th colspan="1">Physics Average</th>
+    <td>{{physics_average.avg}}</td>
+    
+  </tr>
+
+   <tr>
+    <th colspan="1">Chemistry Total Marks</th>
+    <td>{{chemistry_sum.sum}}</td>
+
+    <th colspan="1">Chemistry Average</th>
+    <td>{{chemistry_average.avg}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Biology Total Marks</th>
+    <td>{{biology_sum.sum}}</td>
+
+    <th colspan="1">Biology Average</th>
+    <td>{{biology_average.avg}}</td>
+    
+  </tr>
+
+
+ <tr>
+    <th colspan="1">English Total Marks</th>
+    <td>{{english_sum.sum}}</td>
+
+    <th colspan="1">English Average</th>
+    <td>{{english_average.avg}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Mathematics Total Marks</th>
+    <td>{{mathematics_sum.sum}}</td>
+
+    <th colspan="1">Mathematics Average</th>
+    <td>{{mathematics_average.avg}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Geography Total Marks</th>
+    <td>{{geography_sum.sum}}</td>
+
+    <th colspan="1">Geography Average</th>
+    <td>{{geography_average.avg}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">History Total Marks</th>
+    <td>{{history_sum.sum}}</td>
+
+    <th colspan="1">History Average</th>
+    <td>{{history_average.avg}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Civics Total Marks</th>
+    <td>{{civics_sum.sum}}</td>
+
+    <th colspan="1">Civics Average</th>
+    <td>{{civics_average.avg}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Kiswahili Total Marks</th>
+    <td>{{kiswahili_sum.sum}}</td>
+
+    <th colspan="1">Kiswahili Average</th>
+    <td>{{kiswahili_average.avg}}</td>
+    
+  </tr>
+  
+
+
+  </thead>
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div><!--mwisho wa row--->
+
+
+
+
+
+
+<!---MWISHO ROW YA KUDISPLAY TOTAL NA AVERAGE KWA KILA SOMO--->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---ROW YA KUDISPLAY MAX NA MIN KWA KILA SOMO--->
+<div class="row" style="margin-top: 1cm;"><!--mwanzo wa row--->
+
+
+  <div class="col-md-12" style="margin-bottom: 1cm;"><!--mwanzo wa column--->
+   
+
+
+
+
+<div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">Physics maximum score</th>
+    <td>{{physics_max.max}}</td>
+
+      <th colspan="1">Physics minimum score</th>
+    <td>{{physics_min.min}}</td>
+    
+  </tr>
+
+   <tr>
+    <th colspan="1">Chemistry maximum score</th>
+    <td>{{chemistry_max.max}}</td>
+
+    <th colspan="1">Chemistry minimum score</th>
+    <td>{{chemistry_min.min}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Biology maximum score</th>
+    <td>{{biology_max.max}}</td>
+
+      <th colspan="1">Biology minimum score</th>
+    <td>{{biology_min.min}}</td>
+    
+  </tr>
+
+
+ <tr>
+    <th colspan="1">English maximum score</th>
+    <td>{{english_max.max}}</td>
+
+      <th colspan="1">English minimum score</th>
+    <td>{{english_min.min}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Mathematics maximum score</th>
+    <td>{{mathematics_max.max}}</td>
+
+    <th colspan="1">Mathematics minimum score</th>
+    <td>{{mathematics_min.min}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Geography maximum score</th>
+    <td>{{geography_max.max}}</td>
+
+    <th colspan="1">Geography minimum score</th>
+    <td>{{geography_min.min}}</td>
+    
+  </tr>
+
+
+   <tr>
+   <th colspan="1">History maximum score</th>
+    <td>{{history_max.max}}</td>
+
+    
+    <th colspan="1">History minimum score</th>
+    <td>{{history_min.min}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1">Civics maximum score</th>
+    <td>{{civics_max.max}}</td>
+
+   
+    <th colspan="1">Civics minimum score</th>
+    <td>{{civics_min.min}}</td>
+    
+  </tr>
+
+
+  <tr>
+<th colspan="1">Kiswahili maximum score</th>
+    <td>{{kiswahili_max.max}}</td>
+
+    <th colspan="1">Kiswahili minimum score</th>
+    <td>{{kiswahili_min.min}}</td>
+    
+  </tr>
+  
+
+
+  </thead>
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+</div><!--mwisho wa row--->
+
+
+
+
+
+
+<!---MWISHO ROW YA KUDISPLAY MAX NA MIN KWA KILA SOMO--->
+
+
+
+
+
+
+
+
+
+<div style="margin-top: 1cm;"><!--mwanzo wa row--->
+
+
+  <div class="col-md-5" style="margin-bottom: 1cm;"><!--mwanzo wa column--->
+    <center><h1>TEN BEST STUDENTS</h1></center>
+
+    {% if top_ten %}
+
+    <div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">NO</th>
+    <th colspan="1">Name</th>
+    <th colspan="1">Gender</th>
+
+    <th colspan="1">Total</th>
+    <th colspan="1">Average</th>
+    <th colspan="1">Point</th>
+    <th colspan="1">Grade</th>
+    
+  </tr>
+
+
+
+
+  </thead>
+
+{% for x in top_ten %}
+
+
+  <tbody>
+
+        
+    <tr>
+
+      <td>{{forloop.counter}}</td>
+       <td>{{x.students.first_name}} {{x.students.middle_name}} {{x.students.last_name}}</td>
+
+      <td>{{x.students.gender}}</td>
+      <td>{{x.student_total}}</td>
+      <td>{{x.student_average}}</td>
+      <td>{{x.student_point}}</td>
+      <td>{{x.student_grade}}</td>
+
+       
+
+
+          
+
+      
+    </tr>
+
+      </tbody>
+
+
+
+
+
+
+
+
+      {% endfor %}
+
+{% else %}
+<h1>NO Any Results Added</h1>
+
+{% endif %}
+
+  
+
+
+
+
+</table>
+    
+</div>
+  </div><!--mwisho wa column-->
+
+
+
+
+
+
+<div class="col-md-1" style="margin-bottom:;">
+<!--hii column haina kitu ni kwa ajili ya kutenganisha tu--->
+</div>
+
+
+
+
+
+
+
+
+
+
+  <div class="col-md-5" style="margin-bottom: 1cm;"><!--mwanzo wa column--->
+    <center><h1>LAST TEN STUDENTS</h1></center>
+    {% if last_ten %}
+
+    <div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">NO</th>
+    <th colspan="1">Name</th>
+    <th colspan="1">Gender</th>
+
+    <th colspan="1">Total</th>
+    <th colspan="1">Average</th>
+    <th colspan="1">Point</th>
+    <th colspan="1">Grade</th>
+    
+  </tr>
+
+
+
+
+  </thead>
+
+{% for x in last_ten %}
+
+
+  <tbody>
+
+        
+    <tr>
+
+      <td>{{forloop.counter}}</td>
+       <td>{{x.students.first_name}} {{x.students.middle_name}} {{x.students.last_name}}</td>
+
+      <td>{{x.students.gender}}</td>
+      <td>{{x.student_total}}</td>
+      <td>{{x.student_average}}</td>
+      <td>{{x.student_point}}</td>
+      <td>{{x.student_grade}}</td>
+
+       
+
+
+          
+
+      
+    </tr>
+
+      </tbody>
+
+
+
+
+
+
+
+
+      {% endfor %}
+
+{% else %}
+<h1>NO Any Results Added</h1>
+
+{% endif %}
+
+  
+
+
+
+
+</table>
+    
+</div>
+  </div><!--mwisho wa column-->
+  
+
+
+</div><!--mwisho wa row--->
+
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'MyApp/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'MyApp/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+   <script >
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskel",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+      
+
+    ];
+
+   $( "#search" ). autocomplete({
+    source: "{% url 'search_student_autocomplete' %}",
+  });
+
+
+  } );
+  
+  
+
+</script>
+
+</body>
+</html>
+
+
+{% endblock %}

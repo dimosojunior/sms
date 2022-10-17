@@ -1,0 +1,651 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Add Informations{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 100%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 100%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          ::placeholder{
+            color: blue;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+/* kwa ajili ya kuadd watu wa kuwafollow */
+.follow{
+    
+        display: flex;
+    overflow-x: auto;
+    
+}
+.follow::-webkit-scrollbar{
+    width: 0;
+}
+.follow .People{
+    min-width: 300px;
+    
+    line-height: 20px;
+    
+    background-color: ;
+    margin-right: 1cm;
+}
+.follow .marks{
+    min-width: 800px;
+    
+    line-height: 20px;
+    
+    background-color: ;
+    margin-right: 1cm;
+}
+#bg{
+  background-color: wheat;
+  height: 15px;
+}
+#bg2{
+  background-color: black;
+  height: 20px;
+}
+#bg3{
+  background-color: wheat;
+  height: 20px;
+}
+
+
+
+
+
+
+                  </style>
+
+      </head>
+
+
+  {% if x %}
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+   <div class="row">
+
+ 
+  <div class="col-md-12">
+   <a href="{% url 'all_individual_results' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">All Individual Results</a>
+
+   <a href="" class="btn btn-primary" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Print All students reports</a>
+  </div></div>
+
+
+<center><h1>{{x.students.students.first_name}} {{x.students.students.middle_name}} {{x.students.students.last_name}} REPORT</h1></center>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+
+ 
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+  
+  
+
+
+
+<center>
+  <h1>OFISI YA RAIS TAMISEMI<br> {{x.school_name}}</h1>
+</center>
+
+
+<div id="bg"></div>
+
+<div class="follow" style="margin-top: 1cm;"><!---mwanzo wa div ya follow-->
+
+
+
+    
+  <div class="People"><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Kidato cha {{x.kidato}}</span>
+             
+
+  </div><!--mwisho wa div ya people--->
+
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Mhula {{x.mhula}}</span>
+</div><!--mwisho wa div ya people--->
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Mwaka {{x.mwaka}}</span>
+</div><!--mwisho wa div ya people--->
+
+
+
+
+
+
+  
+  
+  </div><!---mwisho wa div ya follow-->
+
+<hr>
+
+  <div class="People" id="bg2">
+    <h3 style="color: white;font-size: 16px;text-align: center;">MAELEZO YA ALAMA</h3>
+  </div>
+  <div class="People" id="bg3">
+    <h3 style="color: black;font-size: 16px;text-align: center;">A:100-86, B:85-71, C:70-56, D:55-40, E:39-30, F:29-0</h3>
+  </div>
+
+
+<hr>
+
+
+
+
+<div class="follow" style="margin-top: 5px;"><!---mwanzo wa div ya follow-->
+
+
+
+    
+  <div class="People"><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Jina la Mwanafunzi <br>  {{x.students.students.first_name}} {{x.students.students.middle_name}} {{x.students.students.last_name}}</span>
+             
+
+  </div><!--mwisho wa div ya people--->
+
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">JInsia<br>  {{x.students.students.gender}}</span>
+</div><!--mwisho wa div ya people--->
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Nafasi<br>Amekuwa wa {{x.amekuwa_wa}} kati ya wanafunzi {{x.kati_ya}}</span>
+</div><!--mwisho wa div ya people--->
+
+</div><!---mwisho wa div ya follow-->
+
+
+
+
+<hr>
+
+
+<div class="follow" style="margin-top: 5px;"><!---mwanzo wa div ya follow-->
+
+
+
+    
+  <div class="People"><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Amepata Division {{x.students.student_grade}}</span>
+             
+
+  </div><!--mwisho wa div ya people--->
+
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Point {{x.students.student_point}}</span>
+</div><!--mwisho wa div ya people--->
+
+
+
+
+</div><!---mwisho wa div ya follow-->
+
+
+
+
+
+
+
+
+<hr>
+
+
+<div class="follow" style="margin-top: 5px;"><!---mwanzo wa div ya follow-->
+
+
+
+    
+  <div class="People"><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;"> Wastani<br>
+    {{x.students.student_average}}</span>
+             
+
+  </div><!--mwisho wa div ya people--->
+
+
+
+<div class="People" ><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Tabia: {{x.tabia}}</span>
+    <p style="border: 2px solid black;">
+      A: NZURI SANA<br>
+      B: NZURI<br>
+      C: WASTANI<br>
+      D: MBAYA<br>
+    </p>
+</div><!--mwisho wa div ya people--->
+
+
+
+
+</div><!---mwisho wa div ya follow-->
+
+  
+
+
+
+
+<hr>
+
+
+<div class="follow" style="margin-top: 5px;"><!---mwanzo wa div ya follow-->
+
+
+<div class="marks"><!--mwanzo wa div ya people--->
+ <span style="font-size: 18px;color: black;font-family: sans-serif;">Marks za masomo yote</span>  <br> 
+
+<div class="table-responsive text-nowrap">
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">Physics</th>
+    <td>{{x.students.physics}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Chemistry</th>
+    <td>{{x.students.chemistry}}</td>
+    
+    
+  </tr>
+
+
+<tr>
+    <th colspan="1">Biology</th>
+    <td>{{x.students.biology}}</td>
+    
+    
+  </tr>
+
+<tr>
+    <th colspan="1">Civics</th>
+    <td>{{x.students.civics}}</td>
+    
+    
+  </tr>
+
+  <tr>
+    <th colspan="1">English</th>
+    <td>{{x.students.english}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Mathematics</th>
+    <td>{{x.students.mathematics}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">History</th>
+    <td>{{x.students.history}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Geography</th>
+    <td>{{x.students.geography}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Kiswahili</th>
+    <td>{{x.students.kiswahili}}</td>
+    
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1" style="color: red;">Total</th>
+    <td>{{x.students.student_total}}</td>
+    
+    
+  </tr>
+
+   <tr>
+    <th colspan="1" style="color: red;">Average</th>
+    <td>{{x.students.student_average}}</td>
+    
+    
+  </tr>
+
+  
+
+
+  </thead>
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+             
+
+  </div><!--mwisho wa div ya people--->
+
+    
+  <div class="marks"><!--mwanzo wa div ya people--->
+    <span style="font-size: 18px;color: black;font-family: sans-serif;"> Shule imefungwa<br>Tarehe: 
+    {{x.school_close}}</span><br> <hr>
+    <span style="font-size: 18px;color: black;font-family: sans-serif;">Shule itafunguliwa<br>Tarehe: {{x.school_open}}</span><br>
+             
+
+  </div><!--mwisho wa div ya people--->
+
+
+
+
+
+
+
+
+</div><!---mwisho wa div ya follow-->
+
+
+
+
+
+
+
+<div class="row"><!--mwanzo wa row-->
+
+
+  <div class="col-md-12">
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;"> Maoni ya Mwalimu wa darasa:
+  <p style="font-size: 18px;color: black;font-family: sans-serif;border: 1px solid black;border-radius: 5px;margin-left: 5px;padding: 10px;">
+    {{x.maoni_ya_mwalimu_wa_darasa}}
+  </p>
+ 
+ </span>  
+    
+  </div>
+  
+
+</div><!--mwisho wa row-->
+
+
+<div class="row"><!--mwanzo wa row-->
+
+
+  <div class="col-md-12">
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;"> Maoni ya Mkuu wa shule:
+  <p style="font-size: 18px;color: black;font-family: sans-serif;border: 1px solid black;border-radius: 5px;margin-left: 5px;padding: 10px;">
+    {{x.maoni_ya_mkuu_wa_shule}}
+  </p>
+ 
+ </span>  
+    
+  </div>
+  
+
+</div><!--mwisho wa row-->
+
+
+<div class="row"><!--mwanzo wa row-->
+
+
+  <div class="col-md-12">
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;"> Jina la Mkuu wa shule:
+  <p style="font-size: 18px;color: black;font-family: sans-serif;border: 1px solid black;border-radius: 5px;margin-left: 5px;padding: 10px;">
+    {{x.jina_la_mkuu_wa_shule}}
+  </p>
+ 
+ </span>  
+    
+  </div>
+  
+
+</div><!--mwisho wa row-->
+
+
+
+<div class="row"><!--mwanzo wa row-->
+
+
+  <div class="col-md-12">
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;"> Mahitaji:
+  <p style="font-size: 18px;color: black;font-family: sans-serif;border: 1px solid black;border-radius: 5px;margin-left: 5px;padding: 10px;">
+    {{x.mahitaji}}
+  </p>
+ 
+ </span>  
+    
+  </div>
+  
+
+</div><!--mwisho wa row-->
+
+<hr>
+
+
+<div class="row"><!--mwanzo wa row-->
+<center><h1>Kukiri kupokea Ripoti ya Mwanafunzi</h1></center>
+
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;">Maoni ya Mzaza/Mlezi:..........................................................................................................................................................................................................................
+  
+ </span><br> 
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;">Jina la Mzaza/Mlezi:..........................................................................................................................................................................................................................
+  
+ </span><br>  
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;">Saini ya Mzaza/Mlezi:..........................................................................................................................................................................................................................
+  
+ </span><br>  
+
+ <span style="font-size: 18px;color: black;font-family: sans-serif;">Tarehe:..........................................................................................................................................................................................................................
+  
+ </span><br>   
+    
+  
+  
+
+</div><!--mwisho wa row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+<hr>
+<hr>
+
+
+
+
+
+{% else %}
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+
+  <div class="row">
+
+ 
+  <div class="col-md-2">
+   <a href="{% url 'add_individual_results' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Add Individual Results</a>
+  </div></div>
+
+<h1>No any result added</h1>
+</div>
+
+{% endif %}
+
+
+
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'MyApp/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'MyApp/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+   <script >
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskel",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+      
+
+    ];
+
+   $( "#search" ). autocomplete({
+    source: "{% url 'search_student_autocomplete' %}",
+  });
+
+
+  } );
+  
+  
+
+</script>
+
+
+</body>
+</html>
+
+
+{% endblock %}

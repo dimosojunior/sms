@@ -1,0 +1,131 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Students Results, Report and Sms System{% endblock %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title></title>
+
+  <style type="text/css">
+    .card{
+      width: 100%;
+      transition-property: all;
+      transition-duration: 1s;
+      transition-delay: .5s;
+      transition-timing-function: ease-in;
+    }
+    .card:hover{
+      width: 90%;
+      margin-left: 25px;
+
+    }
+    .requiredi:hover{
+
+    }
+    
+  </style>
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 5px;margin-bottom: 2cm;">
+
+
+
+
+
+<div class="row">
+
+{% if activities %}
+{% for x in activities %}
+  <div class="col-md-4" style="margin-top: 15px;"><!---mwanzo wa column--->
+
+
+
+<!---mwanzo wa card--->
+<div class="card text-center" style="border: 2px solid black;border-radius: 15px;">
+  <div class="card-header" style="background-color: rgb(5,5,49);color: white;padding: 10px;font-size: 20px;border-radius: 10px;">
+    {{x.activity_name}}
+  </div>
+  <div class="card-body">
+
+    {% if x.image %}
+
+    <center>
+      <img src="{{x.image.url}}"  class="rounded-circle" style="width: 80%;height: 6cm;">
+    </center>
+    {% else %}
+
+  <h1>NO IMAGE</h1>
+
+  {% endif %}
+
+
+
+       <p class="card-text">
+         {{x.description}}
+       </p>
+       {% if user.is_authenticated %}
+    <a href="{{x.link}}" class="btn btn-primary" style="margin-bottom: 15px;font-size: 18px;width: 50%;padding: 10px; border-radius: 10px;border-bottom-right-radius: 0px;">Visit Page</a>
+    {% else %}
+
+
+ <a href="{% url 'signin' %}" class="btn btn-primary requiredi" style="margin-bottom: 15px;font-size: 18px;width: 50%;padding: 10px; border-radius: 10px;border-bottom-right-radius: 0px;">Login Required</a>
+
+    {% endif %}
+
+
+
+  </div>
+  
+</div>
+
+
+<!---mwisho wa card---->
+    
+  </div><!--mwisho wa column --->
+
+  {% endfor %}
+
+  {% else %}
+
+  <center><h2 style="color: black;">No Any Activity</h2></center>
+
+  {% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!---mwisho wa row---->
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

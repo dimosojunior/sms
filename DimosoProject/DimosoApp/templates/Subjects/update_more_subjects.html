@@ -1,0 +1,165 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Update More Subjects{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          ::placeholder{
+            color: blue;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+
+
+
+                  </style>
+
+      </head>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+
+
+  <div class="row">
+
+ 
+  <div class="col-md-2">
+   <a href="{% url 'subjects' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">See All Subjects</a>
+  </div>
+</div>
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+  <form method="POST" action="" enctype="multipart/form-data">
+    <center> <h1 style="font-size: 18px;color: black;">UPDATE {{x.subject_name}}  SUBJECT</h1></center>
+
+          {% csrf_token %}
+
+
+<div class="row">
+
+  <div class="col-md-3">
+   <label>Subject Number</label>:<br>
+   {{form.subject_no}}<br>
+
+  
+</div>
+
+
+<div class="col-md-3">
+ <label>Subject Name</label>:<br>
+ {{form.subject_name}}<br>
+
+ 
+  </div>
+
+<div class="col-md-3">
+ <label>Link</label>:<br>
+ {{form.link}}
+
+  </div>
+
+
+<div class="col-md-3">
+ <label>Image</label>:<br>
+ {{form.image}}<br>
+
+  </div>
+
+  
+
+
+
+
+
+
+
+
+  </div>    <!--mwisho wa row--->
+
+  <center>
+
+   <button type="submit" style="background-color:blue;border-radius: 10px;padding: 10px;color: white;margin-top: 1cm;
+border: 0px; ">Update Student </button>
+
+</center>
+
+</form>
+
+
+       
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

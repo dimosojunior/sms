@@ -1,0 +1,219 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}History Student Marks{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+
+          ::placeholder{
+            color: blue;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .check{
+            background-color: rgb(5,5,49);
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+          }
+          #checki{
+            width: 20%;
+            background-color: red;
+            color: red;
+            height: 50px;
+
+          }
+
+
+
+
+                  </style>
+
+      </head>
+<body>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 4cm;">
+
+<div class="row">
+
+  <div class="col-md-7">
+    {% if user.role == 'MULTI TEACHER' %}
+  <h2 style="font-size: 18px;color: black;">Click here to add Alama</h2> <a href="{% url 'add_pangilia_alama' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">Add Here</a>
+  {% endif %}
+  </div>
+</div>
+
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+<div class="row" style="background-color: ">
+
+{% if alama %}
+<center>
+  
+
+<center><h1>PANGILIA ALAMA</h1></center>
+<div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;width: 100%;">
+
+{% for x in alama %}
+
+  <thead>
+
+    <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">A</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.A_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.A_end}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">B</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.B_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.B_end}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">C</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.C_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.C_end}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">D</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.D_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.D_end}}</td>
+    
+  </tr>
+
+
+   <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">E</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.E_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.E_end}}</td>
+    
+  </tr>
+
+
+
+  <tr>
+    <th colspan="1" style="float: left;background-color: blue;color: white;">F</th>
+    <td style="float: left;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.F_start}}</td>
+    <td style="background-color: red;width: 20%;"></td>
+    <td style="float: right;background-color: yellow;color: black;font-weight: bold;width: 40%;">{{x.F_end}}</td>
+    
+  </tr>
+
+
+ 
+
+
+
+  
+
+
+  </thead>
+
+ {% empty %}
+      <h1>NO  Alama Added</h1>
+      {% endfor %}
+
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+
+</center>
+
+
+{% else %}
+      <h1>NO  Alama Added</h1>
+      {% endif %}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,357 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Physics Student Marks{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+
+          ::placeholder{
+            color: blue;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          .check{
+            background-color: rgb(5,5,49);
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+          }
+          #checki{
+            width: 20%;
+            background-color: red;
+            color: red;
+            height: 50px;
+
+          }
+
+
+
+
+                  </style>
+
+      </head>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 4cm;">
+
+<div class="row">
+
+ 
+  <div class="col-md-2">
+   <a href="{% url 'subjects' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">See All Subjects</a>
+  </div>
+
+
+
+  <div class="col-md-10 check" >
+
+
+
+
+
+  </div>
+
+</div><!--mwisho wa row --->
+
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+{% if marks.marks %}
+
+<center><span style="color: red;font-weight: bold;font-size: 20px;">{{marks.registerstudents.first_name}} {{marks.registerstudents.middle_name}} {{marks.registerstudents.last_name}}</span><br> <h2>{{marks.subjects.subject_name}} MARKS</h2> </center>
+
+  <div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">Name</th>
+    <td>{{marks.registerstudents.first_name}} {{marks.registerstudents.middle_name}} {{marks.registerstudents.last_name}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Subject Name</th>
+    <td>{{marks.subjects}}</td>
+    
+  </tr>
+
+
+<tr>
+    <th colspan="1">Gender</th>
+    <td>{{marks.registerstudents.gender}}</td>
+    
+  </tr>
+
+  
+
+
+  </thead>
+
+
+
+
+
+
+
+
+</table>
+</div>
+
+
+  {{marks.marks|safe}}
+
+
+
+{% else %}
+
+
+
+
+
+
+
+<center><span style="color: red;font-weight: bold;font-size: 20px;">{{marks.registerstudents.first_name}} {{marks.registerstudents.middle_name}} {{marks.registerstudents.last_name}}</span><br> <h2>{{marks.subjects.subject_name}} MARKS</h2> </center>
+
+  <div class="table-responsive text-nowrap">
+
+<table class="table table-bordered" style="font-size: 19px;">
+
+
+
+  <thead>
+    <tr>
+    <th colspan="1">Name</th>
+    <td>{{marks.registerstudents.first_name}} {{marks.registerstudents.middle_name}} {{marks.registerstudents.last_name}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Subject Name</th>
+    <td>{{marks.subjects}}</td>
+    
+  </tr>
+
+
+<tr>
+    <th colspan="1">Gender</th>
+    <td>{{marks.registerstudents.gender}}</td>
+    
+  </tr>
+
+  <tr>
+    <th colspan="1">Test One</th>
+    <td>{{marks.Test1}}</td>
+    
+  </tr>
+
+  <tr>
+    <th colspan="1">Test Two</th>
+    <td>{{marks.Test2}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Test Three</th>
+    <td>{{marks.Test3}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Test Four</th>
+    <td>{{marks.Test4}}</td>
+    
+  </tr>
+
+
+
+  <tr>
+    <th colspan="1">Test Five</th>
+    <td>{{marks.Test5}}</td>
+    
+  </tr>
+
+
+<tr>
+    <th colspan="1">Mid Term</th>
+    <td>{{marks.MidTerm}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Term</th>
+    <td>{{marks.Term}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Total Marks</th>
+    <td>{{marks.total_marks}}</td>
+    
+  </tr>
+
+
+  <tr>
+    <th colspan="1">Average</th>
+    <td>{{marks.Average}}</td>
+    
+  </tr>
+
+
+  
+
+  </thead>
+
+
+
+
+  <tbody>
+
+      
+
+      </tbody>
+
+
+
+
+
+
+
+
+      
+
+
+
+{% endif %}
+
+  
+
+
+
+
+</table>
+    
+</div>
+    
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'MyApp/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'MyApp/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+   <script >
+  $( function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskel",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+      
+
+    ];
+
+   $( "#search" ). autocomplete({
+    source: "{% url 'search_student_autocomplete' %}",
+  });
+
+
+  } );
+  
+  
+
+</script>
+
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,214 @@
+{% extends 'DimosoApp/base.html' %}
+
+{% load static %}
+{% block title %}Add Student Marks{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+
+        <!---jqeury css link---->
+     <link rel="stylesheet" href="{% static 'DimosoApp/assets/jqueryui/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'DimosoApp/assets/jqueryui/jquery-ui.structure.min.css' %}">
+    <link rel="stylesheet" href="{% static 'DimosoApp/assets/jqueryui/jquery-ui.structure.css' %}">
+    <link rel="stylesheet" href="{% static 'DimosoApp/assets/jqueryui/jquery-ui.theme.min.css' %}">
+     <link rel="stylesheet" href="{% static 'DimosoApp/assets/jqueryui/jquery-ui.theme.css' %}">
+
+        <style type="text/css">
+          body{
+            background-color: ;
+          }
+          input{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          #image{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: red;
+            margin-top: 10px;
+            border: 2px solid blue;
+            border-radius: 15px;
+            border-top-right-radius: 0px;
+
+          }
+
+          select{
+            width: 90%;
+            padding: 10px;
+            font-size: 17px;
+            color: black;
+            margin-top: 10px;
+            border-radius: 10px;
+            border-top-right-radius: 0px;
+          }
+          ::placeholder{
+            color: blue;
+            font-size: 12px;
+            font-weight: bold;
+          }
+
+
+
+
+                  </style>
+
+      </head>
+
+<div class="container-fluid" style="margin-top: 10px;margin-bottom: 2cm;">
+
+  <div class="row">
+
+ 
+  <div class="col-md-2">
+   <a href="{% url 'subjects' %}" class="btn btn-success" style="margin-bottom: 5px;font-size: 18px;padding: 5px; border-radius: 10px;border-bottom-right-radius: 0px;margin-right: 10px;">See All Subjects</a>
+  </div></div>
+
+  {% if messages %}
+    {% for message in messages %}
+     
+
+       <h2 style="color: green;font-size: 20px;font-weight: bold;">{{message}}</h2>
+    {% endfor %}
+  {% endif %}
+
+
+
+
+  <form method="POST" action="" enctype="multipart/form-data">
+    <center> <h1 style="font-size: 18px;color: black;">{{x.subjects.subject_name}} MARKS<br>  <span style="color: red;font-weight: bold;">{{x.registerstudents.first_name}} {{x.registerstudents.middle_name}} {{x.registerstudents.last_name}}</span></h1></center>
+
+          {% csrf_token %}
+
+
+<div class="row">
+
+  
+
+
+<div class="col-md-3">
+ <label>Test One</label>:<br>
+ {{form.Test1}}<br>
+
+ <label>Test Two</label>:<br>
+ {{form.Test2}}
+  </div>
+
+
+<div class="col-md-3">
+ <label>Test Three</label>:<br>
+ {{form.Test3}}<br>
+
+ <label>Test Four</label>:<br>
+ {{form.Test4}}
+  </div>
+
+  <div class="col-md-3">
+ <label>Test Five</label>:<br>
+ {{form.Test5}}<br>
+
+ <label>Mid-Term</label>:<br>
+ {{form.MidTerm}}
+  </div>
+
+
+  <div class="col-md-3">
+ <label>Annual</label>:<br>
+ {{form.Term}}<br>
+
+ <label>Total Marks</label>:<br>
+ {{form.total_marks}}
+  </div>
+
+
+
+
+<div class="row">
+
+<div class="col-md-3">
+ 
+ <label>Average</label>:<br>
+ {{form.Average}}
+  </div>
+
+  
+</div>
+
+
+
+
+
+
+  </div>    <!--mwisho wa row--->
+
+  <div class="row" style="margin-top: 1cm;"><!--mwanzo wa row ya button na ritchtext editor--->
+
+<div class="col-md-9">
+  <label>OR ENTER MARKS HERE USING TABLE</label>:<br>
+{{form.media}}
+{{form.marks}}
+</div>
+
+
+
+  <div class="col-md-3">
+  
+
+  <center>
+
+     <div style="text-align: center;">
+
+
+   <button type="submit" style="background-color:blue;border-radius: 10px;padding: 10px;color: white;margin-top: 1cm;
+border: 0px; ">Add Student Marks</button>
+
+</center></div>
+
+
+</div><!--mwisho wa row ya button na ritchtext editor--->
+</form>
+
+
+       
+
+    
+
+    
+
+
+
+
+
+
+
+
+
+</div><!-- Container -->
+
+
+
+
+<!--jquery code for autocomplete javascriptcode---->
+<script src="{% static 'DimosoApp/assets/jqueryui/external/jquery/jquery.js' %}" type="text/javascript"></script>
+<script src="{% static 'DimosoApp/assets/jqueryui/jquery-ui.js' %}" type="text/javascript"></script>
+
+
+<script src="{% static 'DimosoApp/assets/js/myjs.js' %}"></script>
+
+</body>
+</html>
+
+
+{% endblock %}
